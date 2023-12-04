@@ -1,0 +1,117 @@
+import java.util.*;
+interface Growing
+{
+    void isGrowing();
+}
+class GrowingNumber implements Growing
+{
+    int n;
+    public GrowingNumber(int n)
+    {
+        this.n=n;
+    }
+    public void isGrowing()
+    {
+        int count =0;
+        while(n>0)
+        {
+            //int count = 0;
+            int r=n%10;
+            n/=10;
+            int s=n%10;
+           
+            if(s>r)
+            {
+                count = 1;
+                break;
+            }
+           // n++;
+        }
+        if(count==0)
+        {
+            System.out.println("Growing number");
+        }
+        else
+        {
+            System.out.println("Not growing number");
+        }
+    }
+   
+}
+
+class GrowingString implements Growing
+{
+    String s;
+    public GrowingString(String s)
+    {
+        this.s=s;
+    }
+   
+    public void isGrowing()
+    {
+        int count =0;
+        int i;
+        for(i=0;i<s.length()-1;i++)
+        {
+            if(s.charAt(i)> s.charAt(i+1))
+            {
+                count++;
+                break;
+            }
+        }
+        if(count>0)
+        {
+            System.out.println("Not growing string");
+        }
+        else
+        {
+            System.out.println("Growing string");
+        }
+    }
+}
+
+class Main
+{
+    public static void main(String args[])
+    {
+        Scanner m = new Scanner(System.in);
+        int n= m.nextInt();
+        String s=m.next();
+       
+        GrowingNumber ob=new GrowingNumber(n);
+        ob.isGrowing();
+       
+        GrowingString obj= new GrowingString(s);
+        obj.isGrowing();
+       
+    }
+}
+
+---------------------------------------------------------------------------------------------------------------
+o/p=4
+import java.util.Scanner;
+
+// Interface to declare the sorting method a
+interface FrontMovesCounter {
+    int countFrontMoves(int[] array);
+}
+
+// Class implementing the interface
+class SortArray implements FrontMovesCounter {
+    @Override
+    public int countFrontMoves(int[] array) {
+        int count = 0;
+        int n = array.length;
+
+        // Loop to find the minimum number of front moves
+        for (int i = n - 1; i >= 0; i--) {
+            if (array[i] == n) {
+                n--;
+            } else {
+                count++;
+            }
+        }
+
+        return count;
+    }
+}
